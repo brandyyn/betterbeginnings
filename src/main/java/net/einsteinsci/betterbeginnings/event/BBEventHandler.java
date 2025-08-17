@@ -13,6 +13,7 @@ import net.einsteinsci.betterbeginnings.register.achievement.RegisterAchievement
 import net.einsteinsci.betterbeginnings.tileentity.TileEntityCampfire;
 import net.einsteinsci.betterbeginnings.util.ChatUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.*;
@@ -262,10 +263,13 @@ public class BBEventHandler
 		}
 
 		// Makes sure emergency escape mechanic does not let blocks fall out (like logs)
-		int neededHarvestLevel = block.getHarvestLevel(e.blockMetadata);
-		String neededToolClass = block.getHarvestTool(e.blockMetadata);
+		Material material = block.getMaterial();
 		int usedHarvestLevel = 0;
 		String usedToolClass = null;
+
+		if (material != Material.wood)
+			return;
+
 		if (held != null)
 		{
 			for (String toolClass : held.getItem().getToolClasses(held))
@@ -277,32 +281,12 @@ public class BBEventHandler
 					usedToolClass = toolClass;
 				}
 			}
-
-			if (BBConfig.alsoPickaxes.containsKey(held.getItem()))
-			{
-				usedToolClass = "pickaxe";
-				usedHarvestLevel = BBConfig.alsoPickaxes.get(held.getItem());
-				return;
-			}
-
-			if (BBConfig.alsoAxes.containsKey(held.getItem()))
-			{
+			if (BBConfig.alsoAxes.containsKey(held.getItem())) {
 				usedToolClass = "axe";
-				usedHarvestLevel = BBConfig.alsoAxes.get(held.getItem());
-				return;
 			}
 		}
 
-		if (neededToolClass == null || neededToolClass.equalsIgnoreCase("shovel") ||
-			neededToolClass.equalsIgnoreCase("null"))
-		{
-			return;
-		}
-
-		if (usedToolClass == null || !usedToolClass.equalsIgnoreCase(neededToolClass) ||
-			usedHarvestLevel < neededHarvestLevel)
-		{
-			//ChatUtil.sendModChatToPlayer(player, "A tool is required");
+		if(!"axe".equals(usedToolClass)) {
 			e.drops.clear();
 		}
 	}
