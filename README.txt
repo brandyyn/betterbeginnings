@@ -1,37 +1,16 @@
--------------------------------------------
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+Fixes BetterBeginnings server crash when repairing items with the Infusion Repair Table
 
-Note also that the patches are built against "unrenamed" MCP source code (aka
-srgnames) - this means that you will not be able to read them directly against
-normal code.
+Fixes the config options to add tools to pickaxe and axe categories, previously this didn't work, this was mainly a problem with Paxel/Drill type tools.
 
-Source pack installation information:
+Example of my config:
+ActuallyAdditions:itemDrill=4
+MekanismTools:StonePaxel=1
+MekanismTools:IronPaxel=2
+MekanismTools:DiamondPaxel=3
+MekanismTools:GoldPaxel=3
+MekanismTools:ObsidianPaxel=4
+MekanismTools:SteelPaxel=4
 
-Standalone source installation
-==============================
+Removed Flint Knife's Flavour Text Tooltip
 
-To install this source code for development purposes, extract this zip file.
-It ships with a demonstration mod. Run 'gradlew setupDevWorkspace' to create
-a gradle environment primed with FML. Run 'gradlew eclipse' or 'gradlew idea' to
-create an IDE workspace of your choice.
-Refer to ForgeGradle for more information about the gradle environment
-Note: On macs or linux you run the './gradlew.sh' instead of 'gradlew'
-
-Forge source installation
-=========================
-MinecraftForge ships with this code and installs it as part of the forge
-installation process, no further action is required on your part.
-
-For reference this is version @MAJOR@.@MINOR@.@REV@.@BUILD@ of FML
-for Minecraft version @MCVERSION@.
-
-LexManos' Install Video
-=======================
-https://www.youtube.com/watch?v=8VEdtQLuLO0&feature=youtu.be
-
-For more details update more often refer to the Forge Forums:
-http://www.minecraftforge.net/forum/index.php/topic,14048.0.html
+Fixes Modded Wood dropping when using your fists to break them, previously only worked for vanilla wood
