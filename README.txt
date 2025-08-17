@@ -12,3 +12,5 @@ MekanismTools:ObsidianPaxel=4
 MekanismTools:SteelPaxel=4
 
 Removed Flint Knife's Flavour Text Tooltip
+
+Fixes Modded Wood dropping when using your fists to break them, previously only worked for vanilla wood
